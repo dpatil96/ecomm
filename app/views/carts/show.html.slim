@@ -1,0 +1,54 @@
+h1
+  | Your Cart
+- if @cart_items.present?
+  table.table.table-bordered.table-striped
+    thead
+      tr
+        th
+          | Product
+        th
+          | Price
+        th
+          | Quantity
+        th
+          | Total
+    tbody
+      - @cart_items.each do |cart_item|
+        tr
+          td
+            = cart_item.product.name
+          td.price
+            = number_with_precision(cart_item.product.price, precision: 0)
+          td
+            .input-group
+              input.form-control.form-control-sm.quantity-input[type="number" value=cart_item.quantity]
+              button.btn.btn-outline-secondary[type="button"] +
+          td.total
+            = number_with_precision(cart_item.product.price * cart_item.quantity, precision: 0)
+  p
+    | Total: 
+    span.text-primary.cart-total
+      = number_with_precision(@cart_items.sum { |cart_item| cart_item.product.price * cart_item.quantity }, precision: 0)
+- else
+  p
+    | Your cart is empty.
+
+
+javascript: 
+    $(document).on('change', '.quantity-input', function() {
+    var row = $(this).closest('tr');
+    var price = parseFloat(row.find('.price').text().replace(',', ''));
+    var quantity = parseInt($(this).val());
+    var total = price * quantity;
+    row.find('.total').text(total.toFixed(0));
+    
+    updateTotal();
+    });
+
+    function updateTotal() {
+    var total = 0;
+    $('.total').each(function() {
+        total += parseFloat($(this).text().replace(',', ''));
+    });
+    $('.cart-total').text(total.toFixed(0));
+    }

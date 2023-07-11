@@ -1,0 +1,37 @@
+= form_with(model: product, local: true) do |form|
+  - if product.errors.any?
+    #error_explanation
+      .color:.red
+        h2
+          = pluralize(product.errors.count, "error")
+          prohibited this product from being saved:
+
+        ul
+          - product.errors.full_messages.each do |message|
+            li = message
+
+  .form-group.mb-3
+    = form.label :name, style: "display: block"
+    = form.text_field :name, class: 'form-control form-control-lg'
+
+  .form-group.mb-3
+    = form.label :size, style: "display: block"
+    = form.text_field :size, class: 'form-control form-control-lg'
+
+  .form-group.mb-3
+    = form.label :price, style: "display: block"
+    = form.text_field :price, class: 'form-control form-control-lg'
+    
+  .form-group.mb-3
+    = form.label :main_image, style: "display: block"
+    = form.file_field :main_image, class: 'form-control form-control-lg'
+    
+
+  .form-group.mt-3
+  
+    = form.submit class: "btn btn-primary btn-lg"
+    = link_to "Back" , root_path, class: "btn btn-outline-primary btn-lg"
+  
+  / .actions
+  /   = form.submit
+

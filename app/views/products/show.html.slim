@@ -1,0 +1,106 @@
+.card-body
+  .product-image
+    = image_tag @product.main_image, class: "img-fluid" if @product.main_image.attached?
+
+  hr
+
+  .product-info
+    p.card-text.mb-3
+      strong Name:
+      br
+      = @product.name
+
+    p.card-text.mb-3
+      strong Size:
+      br
+      = @product.size
+
+    p.card-text.mb-3
+      strong Price:
+      br
+      = @product.price
+
+  hr
+
+  h1
+
+  = form_with(model: [@product, @product.cart_items.build], url: product_cart_items_path(@product), method: :post) do |form|
+    = form.hidden_field :quantity, value: 1
+    = form.submit 'Add to Cart', class: "btn btn-primary"
+
+
+
+= render 'review', review: @review
+
+= link_to 'Back', products_path, class: "btn btn-info"
+
+
+
+
+/ doctype html
+/ html
+/   head
+/     title Product Information
+/     link rel="stylesheet" href="assets/stylesheets/style.scss"
+/   body
+/     .container
+/       .row.justify-content-center
+/         .col-md-6
+/           .card
+/             .card-body
+/               .image-container
+/                 = image_tag @product.main_image if @product.main_image.attached?
+
+/               hr
+
+/               .product-info
+/                 p.card-text
+/                   strong Name:
+/                   br
+/                   = @product.name
+
+/                 p.card-text
+/                   strong Size:
+/                   br
+/                   = @product.size
+
+/                 p.card-text
+/                   strong Price:
+/                   br
+/                   = @product.price
+
+/               hr
+
+/               = render 'review', review: @review
+
+/           = link_to 'Back', products_path, class: "btn btn-info"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ .product-div-right style="padding-right: 20px;"
+/   p
+/   strong Name:
+/   = @product.name
+
+/   p 
+/   strong Size:
+/   = @product.size
+
+/   p
+/   strong Price: 
+/   = @product.price

@@ -1,0 +1,11 @@
+
+h2 Edit Profile
+
+= form_with model: @profile, url: profile_path, method: :patch do |form|
+  p
+    = form.label :name
+    br
+    = form.text_field :name
+
+  p
+    = form.submit "Update"

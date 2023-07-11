@@ -1,0 +1,69 @@
+h2
+  | Review
+
+- @product.reviews.each do |review|
+  .card.mb-3
+    .card-body
+      p.card-text
+        strong User Name:
+        | #{review.user_name}
+
+      p.card-text
+        strong Comment:
+        | #{review.comments}
+
+      p.card-text
+        strong Rating:
+        | #{review.rating}
+
+      - if current_user&.admin?
+        = link_to "Delete", product_review_path(@product.id, review.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+
+h2
+  | Add a review:
+
+= form_with model: [ @product, @product.reviews.build ], html: { class: "mb-3" } do |form|
+  = form.hidden_field :product_id
+
+  .form-group
+    = form.label :user_name
+    = form.text_field :user_name, value: current_user.profile&.name, readonly: true, class: "form-control"
+
+  / .form-group
+  /   = form.label :rating, step: '0.1'
+  /   = form.range_field :rating, in: 0..5, step: '0.1', class: "form-control bg-dark text-light"
+
+  .form-group
+    = form.label :rating, step: '0.1'
+    = form.range_field :rating, in: 0..5, step: '0.1', class: "form-control form-control-dark rating-input"
+
+  / .form-group
+  /   = form.label :rating
+  /   .rating-input
+  /     | Rating:
+  /     = form.hidden_field :rating, id: "rating-input"
+  /     .rateyo-readonly-container
+
+  .form-group
+    = form.label :comments
+    = form.text_field :comments, class: "form-control"
+
+  .form-group
+    = form.submit "Submit", class: "btn btn-primary"
+
+
+
+javascript:
+  document.addEventListener('DOMContentLoaded', () => {
+    const ratingInput = document.querySelector('.rating-input');
+    const ratingValue = document.createElement('span');
+    ratingValue.classList.add('rating-value');
+    ratingInput.after(ratingValue);
+
+    ratingInput.addEventListener('input', (event) => {
+      const rating = event.target.value;
+      ratingValue.textContent = rating;
+    });
+  });
+
+

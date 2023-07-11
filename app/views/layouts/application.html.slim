@@ -1,0 +1,68 @@
+doctype html
+html
+  head
+    title Ecomm
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'custom', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track': 'reload'
+    / = javascript_include_tag 'rateyo/jquery.rateyo.js'
+    / = stylesheet_link_tag 'rateyo/jquery.rateyo.scss.css'
+  body
+    = render 'layouts/navbar'
+    div(style="text-align: center;")
+      = render 'layouts/header'
+      - flash.each do |name, msg|
+        div class=name
+          = msg
+    .container
+      .row
+        = yield
+
+
+
+
+
+
+
+
+
+
+/ <%
+/ =begin%>
+/  <!DOCTYPE html>
+/ <html>
+/   <head>
+/     <title>Ecomm</title>
+/     <meta name="viewport" content="width=device-width,initial-scale=1">
+/     <%= csrf_meta_tags %>
+/     <%= csp_meta_tag %>
+
+    
+/   <%= stylesheet_link_tag 'custom', media: 'all', 'data-turbolinks-track': 'reload' %>
+/    <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+/   <link rel="stylesheets" href="stylesheets/style.scss">
+
+/   <%= javascript_include_tag 'rateyo/jquery.rateyo.js' %>
+
+/ <%= stylesheet_link_tag 'jquery.rateyo.css' %>
+/   </head>
+
+/   <body>
+/     <%= render 'layouts/navbar'%>
+/     <div style="text-align:center;">
+/       <%= render 'layouts/header'%>
+/       <%= flash.each do |name , msg|%>
+/         <%= content_tag :div, msg, class: name %>
+/         <%end%>
+/     </div>
+/     <div class="container">
+/       <div class="row">
+/         <%= yield %>
+      
+/   </body>
+/ </html> 
+/ <%
+/ =end%>
