@@ -1,24 +1,19 @@
-# app/policies/product_policy.rb
+# frozen_string_literal: true
+
 class ProductPolicy < ApplicationPolicy
-  
-    def create?
-      user.admin? # Only allow admins to create products
-    end
-  
-    def update?
-      user.admin? # Only allow admins to update products
-    end
-  
-    def destroy?
-      user.admin? # Only allow admins to delete products
-    end
-    
-    def edit?
-      user.admin?
-    end
-  
-    def destroy?
-      user.admin?
-    end
+  def create?
+    user.present? && user.admin? # Only allow admins to create products
   end
-  
+
+  def update?
+    user.present? && user.admin? # Only allow admins to update products
+  end
+
+  def destroy?
+    user.present? && user.admin? # Only allow admins to delete products
+  end
+
+  def edit?
+    user.present? && user.admin?
+  end
+end

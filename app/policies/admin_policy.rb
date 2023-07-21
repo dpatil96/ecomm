@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdminPolicy < ApplicationPolicy
   attr_accessor :admin
 
@@ -7,6 +9,7 @@ class AdminPolicy < ApplicationPolicy
     #   scope.all
     # end
   end
+
   def create?
     user.admin? # Only allow admins to create products
   end

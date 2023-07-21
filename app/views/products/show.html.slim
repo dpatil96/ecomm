@@ -24,8 +24,10 @@
 
   h1
 
-  = form_with(model: [@product, @product.cart_items.build], url: product_cart_items_path(@product), method: :post) do |form|
-    = form.hidden_field :quantity, value: 1
+  = form_with(url: product_cart_items_path(@product)) do |form|
+    .form-group
+      = form.label :quantity
+      = form.number_field :quantity, min: 1, value: 1, class: "form-control"
     = form.submit 'Add to Cart', class: "btn btn-primary"
 
 

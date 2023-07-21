@@ -1,11 +1,12 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
 
 module Ecomm
   class Application < Rails::Application
@@ -13,7 +14,6 @@ module Ecomm
     config.load_defaults 6.1
     config.generators.template_engine = :slim
     config.assets.paths << Rails.root.join('app', 'assets', 'javascripts', 'rateyo')
-
 
     # Configuration for the application, engines, and railties goes here.
     #

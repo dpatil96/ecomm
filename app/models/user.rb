@@ -1,24 +1,27 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable\
   after_create :create_profile
+
   has_one :profile
   has_many :reviews
   has_one :cart
+  has_many :cart_items
+  has_many :orders
+  has_many :order_items , through: :orders
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
-         enum role: { user: 0, admin: 1, manager: 2 }
-        # def admin?
-        #   role=='admin'
-        # end
-       
-  
-       
+  #  enum role: { user: 0, admin: 1, manager: 2 }
+  def admin?
+    role == 'admin'
+  end
 
-        private
-      
-        def create_profile
-          build_profile.save
-        end
+  private
 
+  def create_profile
+    build_profile.save
+  end
 end

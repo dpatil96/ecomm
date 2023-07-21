@@ -1,8 +1,9 @@
-class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:edit, :update]
+# frozen_string_literal: true
 
-  def edit
-  end
+class ProfilesController < ApplicationController
+  before_action :set_profile, only: %i[edit update]
+
+  def edit; end
 
   def update
     if @profile.update(profile_params)

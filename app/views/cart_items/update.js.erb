@@ -1,0 +1,6 @@
+// update.js.erb
+$(".cart-item-total").each(function(index) {
+  var quantity = parseInt($(".cart-item-quantity:eq(" + index + ")").val());
+  var price = parseFloat($(this).prev().text());
+  $(this).text((quantity * price).toFixed(2));
+});

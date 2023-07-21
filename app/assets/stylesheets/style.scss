@@ -1,35 +1,47 @@
+.total-amount-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 20px;
+}
 
-    .main-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+.total-amount {
+  font-weight: bold;
+  font-size: 18px;
+}
 
-    .product-div-left {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
 
-    .image-container img {
-      max-width: 100%;
-      max-height: 100%;
-    }
 
-    .product-div-right {
-      flex: 1;
-      padding-right: 30px; /* Adjust the padding as needed */
-      text-align: right;
-    }
+    // .main-wrapper {
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   height: 100vh;
+    // }
 
-    .product-div-right p {
-      margin: 5px 0;
-    }
+    // .product-div-left {
+    //   flex: 1;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    // }
 
-    .form-control-dark {
-      background-color: #343a40;  /* Dark background color */
-      color: #fff;  /* Text color */
-      /* Add any additional styles you want */
-    }
+    // .image-container img {
+    //   max-width: 100%;
+    //   max-height: 100%;
+    // }
+
+    // .product-div-right {
+    //   flex: 1;
+    //   padding-right: 30px; /* Adjust the padding as needed */
+    //   text-align: right;
+    // }
+
+    // .product-div-right p {
+    //   margin: 5px 0;
+    // }
+
+    // .form-control-dark {
+    //   background-color: #343a40;  /* Dark background color */
+    //   color: #fff;  /* Text color */
+    //   /* Add any additional styles you want */
+    // } 
