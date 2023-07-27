@@ -1,0 +1,25 @@
+/ # app/views/discounts/index.html.slim
+h1 Discounts
+
+- if policy(Discount.new).create?
+  = link_to 'Create New Discount', new_discount_path, class: 'btn btn-primary'
+
+table.table.table-bordered.table-striped
+  thead
+    tr
+      th Name
+      th Code
+      th Discount Percentage
+      th Action
+  tbody
+    - @discounts.each do |discount|
+      tr
+        td = discount.name
+        td = discount.code
+        td = discount.discount_percentage
+        td
+          - if policy(discount).update?
+            = link_to 'Edit', edit_discount_path(discount), class: 'btn btn-primary'
+          - if policy(discount).destroy?
+            = link_to 'Delete', discount_path(discount), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+          = link_to 'View Details', discount_path(discount), class: 'btn btn-secondary'

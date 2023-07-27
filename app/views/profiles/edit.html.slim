@@ -1,11 +1,21 @@
-
 h2 Edit Profile
 
-= form_with model: @profile, url: profile_path, method: :patch do |form|
-  p
-    = form.label :name
-    br
-    = form.text_field :name
+= form_with model: @profile, url: profile_path, method: :patch, html: { class: 'form' } do |form|
+  .form-group
+    = form.label :name, class: 'form-label'
+    = form.text_field :name, class: 'form-control'
 
-  p
-    = form.submit "Update"
+  .form-group
+    = form.label :address, class: 'form-label'
+    = form.text_field :address, class: 'form-control'
+
+  .form-group
+    = form.label :gender, class: 'form-label'
+    = form.select :gender, options_for_select(['Male', 'Female', 'Other']), {}, class: 'form-select'
+
+  .form-group
+    = form.label :birth_date, class: 'form-label'
+    = form.date_field :birth_date, class: 'form-control'
+
+  .form-group
+    = form.submit "Update Profile", class: 'btn btn-primary'

@@ -5,10 +5,7 @@ class CartItemsController < ApplicationController
   before_action :set_product, only: [:create]
   before_action :set_cart_item, only: %i[update destroy]
 
-  def create
-    @product = Product.find(params[:product_id])
-    @cart = current_user.cart || current_user.create_cart
-  
+  def create  
     if @cart.save
       @cart_item = @cart.cart_items.find_or_initialize_by(product_id: @product.id)
       @cart_item.quantity = params[:quantity].to_i
@@ -19,6 +16,7 @@ class CartItemsController < ApplicationController
       else
         redirect_to product_path(@product), alert: 'Failed to add product to cart.'
       end
+
     else
       redirect_to product_path(@product), alert: 'Failed to create cart.'
     end
@@ -27,13 +25,13 @@ class CartItemsController < ApplicationController
 
   
 
-  def update
-    if @cart_item.update(cart_item_params)
-      redirect_to cart_path, notice: 'Cart item was successfully updated.'
-    else
-      redirect_to cart_path, alert: 'Failed to update cart item.'
-    end
-  end
+  # def update
+  #   if @cart_item.update(cart_item_params)
+  #     redirect_to cart_path, notice: 'Cart item was successfully updated.'
+  #   else
+  #     redirect_to cart_path, alert: 'Failed to update cart item.'
+  #   end
+  # end
 
   # ...
 
@@ -55,6 +53,29 @@ class CartItemsController < ApplicationController
     params.require(:cart_item).permit(:quantity)
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # class CartItemsController < ApplicationController
 #   before_action :set_cart

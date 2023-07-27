@@ -1,0 +1,10 @@
+/ # app/views/discounts/show.html.slim
+h1 Discount Details
+
+p Name: #{@discount.name}
+p Code: #{@discount.code}
+p Discount Percentage: #{@discount.discount_percentage}
+
+
+= link_to 'Edit', edit_discount_path(@discount), class: 'btn btn-primary'
+= link_to 'Back', discounts_path, class: 'btn btn-secondary'

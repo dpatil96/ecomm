@@ -1,0 +1,11 @@
+= form_with model: discount, url: discount.persisted? ? discount_path(discount) : discounts_path, method: discount.persisted? ? :patch : :post do |form|
+  = form.label :name
+  = form.text_field :name
+
+  = form.label :code
+  = form.text_field :code
+
+  = form.label :discount_percentage
+  = form.number_field :discount_percentage
+
+  = form.submit 'Save', class: 'btn btn-primary'

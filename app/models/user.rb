@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :reviews
   has_one :cart
   has_many :cart_items
-  has_many :orders
-  has_many :order_items , through: :orders
+  has_one :order  
+  has_many :order_items , through: :order
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable

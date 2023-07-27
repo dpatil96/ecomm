@@ -30,4 +30,12 @@ Rails.application.routes.draw do
   get 'cart/invoice', to: 'carts#invoice', as: :invoice
 
   resource :cart, only: :show
+
+  resources :discounts
+
+  resources :carts do
+    post 'apply_discount', on: :member
+  end
+  
+
 end
