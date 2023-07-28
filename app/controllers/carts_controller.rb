@@ -4,7 +4,10 @@ class CartsController < ApplicationController
   def show
     @cart_items = current_user.cart.cart_items.includes(:product)
     @total_amount = @cart_items.sum { |cart_item| cart_item.price.to_i * cart_item.quantity }
-    @cart.status = "Not Paid"
+    if @cart.cart_items.present?
+       @cart.status = "Not Paid"
+       @cart.save
+    end
   end
 
 

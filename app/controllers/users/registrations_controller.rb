@@ -12,6 +12,12 @@ module Users
       respond_with resource
     end
 
+    def users_list
+      @users = User.includes(:order_items)
+      @order_items = OrderItem.all
+      @cart_items = CartItem.all
+    end
+
     private
 
     def sign_up_params

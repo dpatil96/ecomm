@@ -1,0 +1,83 @@
+/ # app/views/users/registrations/users_list.html.slim
+
+h1 Users List
+
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th User Name
+      th Product Name
+      th Quantity
+      th Price
+      th Status      
+      th User Role
+  tbody
+      - if @cart_items.present?
+        - @cart_items.each do |cart_item|
+          tr
+            td= cart_item.cart.user.profile.name
+            td= cart_item.product.name
+            td= cart_item.quantity
+            td= cart_item.price
+            td= cart_item.cart.status
+            td= cart_item.cart.user.role.capitalize
+      - @order_items.each do |order_item|
+        tr
+          td= order_item.order.user.profile.name
+          td= order_item.product.name
+          td= order_item.quantity
+          td= order_item.price
+          td= order_item.invoice_status
+          td= order_item.order.user.role.capitalize
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ / # app/views/users/registrations/users_list.html.slim
+
+/ h1 Users List
+
+/ table
+/   thead
+/     tr
+/       th Email
+/       th Role
+/       th Order Items
+/   tbody
+    
+/       tr
+/         td= 
+/         td= 
+/         td
+/           ul
+/             - @order_items.each do |order_item|
+/               li
+/                 span Product Name: #{order_item.product.name}
+/                 span Quantity: #{order_item.quantity}
+/                 span Price: #{order_item.price}
+/                 span Status: #{order_item.invoice_status}
+/                 span User Name: #{order_item.order.user.profile.name}
+/                 span Role: #{order_item.order.user.role}

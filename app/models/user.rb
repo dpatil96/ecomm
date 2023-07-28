@@ -17,15 +17,14 @@ class User < ApplicationRecord
 
   # enum role: [:user, :admin, :manager]
   # enum role: { user: 0, admin: 1, manager: 2 }
-
-
+ 
   def admin?
     role == 'admin'
   end
 
   def users_list?
     authorize :manager,:users_list?
-    @user = User.all
+    # @users = User.includes(:order_items)
     
   end
 

@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resource :profile, only: %i[edit update]
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
+
+  devise_scope :user do
+    get '/users/users_list', to: 'users/registrations#users_list', as: :users_list
+  end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :products do
     resources :reviews
@@ -36,7 +41,13 @@ Rails.application.routes.draw do
 
   resources :discounts
 
-  
+
+  # get 'users/users_list', to: 'users#users_list', as: :users_list
+  # resources :users do
+  #   collection do
+  #     get 'users_list' # Create a custom route to access the users_list? action
+  #   end
+  # end
   
 
 end
