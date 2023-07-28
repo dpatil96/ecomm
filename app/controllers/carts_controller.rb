@@ -4,9 +4,11 @@ class CartsController < ApplicationController
   def show
     @cart_items = current_user.cart.cart_items.includes(:product)
     @total_amount = @cart_items.sum { |cart_item| cart_item.price.to_i * cart_item.quantity }
+    @cart.status = "Not Paid"
   end
 
-  def pay_bill
+
+  def pay_bill()
     @cart_items = current_user.cart.cart_items.includes(:product)
     @total_amount = @cart_items.sum { |cart_item| cart_item.price.to_i * cart_item.quantity }
      
@@ -15,35 +17,22 @@ class CartsController < ApplicationController
   
     # Associate the cart items with the order
     @order.order_items = @cart_items.map do |cart_item|
-      OrderItem.new(product: cart_item.product, quantity: cart_item.quantity, price: cart_item.price)
-    end
-
-    if params[:discount_code].present?
-      @discount = Discount.find_by(code: params[:discount_code])
-      if @discount
-        # Calculate the discounted total amount
-        @discounted_total_amount = (@total_amount - (@total_amount * @discount.discount_percentage / 100)).round(2)
-
-        # Apply the discount to the order
-        @order.total_amount = @discounted_total_amount
-        @order.save
-      else
-        flash[:alert] = 'Invalid discount code. Please try again.'
-        redirect_to root_path and return
-      end
-    else
-      # If no discount code is provided, use the original total amount
-      @discounted_total_amount = @total_amount
+      OrderItem.new(product: cart_item.product, quantity: cart_item.quantity, price: cart_item.price, invoice_status: 'Paid', invoice_date: Date.current)
     end
   
     # Remove the cart items after successful payment
     @cart_items.destroy_all
-
-    
   
     # Redirect to the invoice page with the discounted total amount
     redirect_to invoice_path(order_id: @order.id), notice: 'Payment successful. Thank you!'
   end
+
+
+  # def pay_bill
+
+  #   @cart.pay_bill(current_user)
+
+  # end
 
   def apply_discount
     coupon_code = params[:discount_code]
@@ -58,16 +47,19 @@ class CartsController < ApplicationController
   
   
   
-  def invoice
-    @cart.status = 'true'
+  
+  def invoice()
+    @cart = current_user.cart
+    @cart.status = "Paid"
     @order = Order.find(params[:order_id])
     @order_items = @order.order_items
     @user = @order.user
     @status = @cart
     @cart_items = current_user.cart.cart_items.includes(:product)
-    @otal_amount = @cart_items.sum { |cart_item| cart_item.price.to_i * cart_item.quantity }
+    @total_amount = @cart_items.sum { |cart_item| cart_item.price.to_i * cart_item.quantity }
     # @total_amount = @order.total_amount # Use the total_amount from the order, which already considers the discount
   end
+
 
   private
 

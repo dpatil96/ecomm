@@ -3,7 +3,7 @@ h1 Invoice
 - if @user.profile.present?
   p Customer Name: #{@user.profile.name}
   p Billing Address: #{@user.profile.address}
-  p status: #{@status.status}
+  / p status: #{@status.status}
 - else
   p Customer Name: N/A
 
@@ -22,7 +22,8 @@ table.table.table-bordered.table-striped
         td= order_item.quantity
         td= order_item.price
         td= order_item.price * order_item.quantity
-        
+        td= order_item.invoice_status
+        / td= order_item.invoice_date
 p Discount Applied: #{@dist = (@order.total_amount * 0.1)}
 
 table.table.table-bordered.table-striped

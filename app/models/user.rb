@@ -14,9 +14,19 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
-  #  enum role: { user: 0, admin: 1, manager: 2 }
+
+  # enum role: [:user, :admin, :manager]
+  # enum role: { user: 0, admin: 1, manager: 2 }
+
+
   def admin?
     role == 'admin'
+  end
+
+  def users_list?
+    authorize :manager,:users_list?
+    @user = User.all
+    
   end
 
   private

@@ -8,6 +8,7 @@ h1 Your Cart
         th Quantity
         th Price
         th Total
+        th status 
     tbody
       - @cart_items.each do |cart_item|
         tr
@@ -15,7 +16,7 @@ h1 Your Cart
           td = cart_item.quantity
           td = cart_item.product.price
           td = cart_item.product.price * cart_item.quantity
-
+          td = @cart.status
   .total-amount-box
     .total-amount
       strong Total Amount:

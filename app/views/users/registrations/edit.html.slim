@@ -36,7 +36,7 @@ h2
 
   .form-group
     = f.label :role
-    = f.select :role, options_for_select(["user", "admin"]), {}, class: "form-control"
+    = f.select :role, options_for_select(["user", "admin", "manager"]), {}, class: "form-control"
 
   .actions
     = f.submit "Update", class: "btn btn-primary"
