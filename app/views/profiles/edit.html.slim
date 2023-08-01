@@ -16,6 +16,12 @@ h2 Edit Profile
   .form-group
     = form.label :birth_date, class: 'form-label'
     = form.date_field :birth_date, class: 'form-control'
-
+  br
+  .form-group
+    strong Role:
+    | #{@profile.user.role}
+  br
   .form-group
     = form.submit "Update Profile", class: 'btn btn-primary'
+
+  

@@ -2,21 +2,21 @@
     <ul>
         
         <% if user_signed_in? %>
-        <li>
+        <ul>
         <%= link_to 'Edit Registration', edit_user_registration_path , class:"btn btn-warning"%>
-        </li>
-         <li>
+        </ul>
+         <ul>
         <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"btn btn-danger" %>
-        </li>
+        </ul>
 
         <% else %>
 
-         <li>
+         <ul>
         <%= link_to 'Login', new_user_session_path,class: "btn btn-outline-primary btn-lg"%>
-        </li>
-         <li>
+        </ul>
+         <ul>
         <%= link_to 'Register',new_user_registration_path,class: "btn btn-outline-primary btn-lg"%>
-        </li>
+        </ul>
 
         <%end%>
 

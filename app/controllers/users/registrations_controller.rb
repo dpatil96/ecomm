@@ -11,8 +11,16 @@ module Users
       resource.build_profile
       respond_with resource
     end
+    def get_user
+      return user = current_user
+      
+    end
 
     def users_list
+
+      authorize :manager, :users_list?
+
+
       @users = User.includes(:order_items)
       @order_items = OrderItem.all
       @cart_items = CartItem.all

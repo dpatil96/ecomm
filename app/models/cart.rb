@@ -4,7 +4,8 @@ class Cart < ApplicationRecord
   belongs_to :user
   has_many :cart_items, dependent: :destroy
   has_many :order_items 
-
+  include Discount
+  # include DiscountModule
 
   # def pay_bill(current_user)
   #   @cart_items = current_user.cart.cart_items.includes(:product)

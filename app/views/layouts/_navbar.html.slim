@@ -1,33 +1,3 @@
-/         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-/     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-/     <%= stylesheet_link_tag "application" %>
-
-/     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-/   <div class="container-fluid">
-/     <a class="navbar-brand" href="#">Products</a>
-/     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-/       <span class="navbar-toggler-icon"></span>
-/     </button>
-/     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-/       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-/         <li class="nav-item">
-/           <a class="nav-link active" aria-current="page" href="/products">Home</a>
-/         </li>
-/         <li class="nav-item">
-/           <a class="nav-link" href="/products/new">Profile</a>
-/         </li>
-    
-/       </ul>
-/       <form class="d-flex">
-/         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-/         <button class="btn btn-outline-success" type="submit">Search</button>
-/       </form>
-/     </div>
-/   </div>
-/ </nav>
-
-
-
 = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 = stylesheet_link_tag "application"
@@ -48,9 +18,10 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
         li.nav-item
           a.nav-link[href="/cart"]
             | Cart
-        li.nav-item
-          a.nav-link(href="/discounts")
-            | Discounts
+        - if current_user_role == "manager"
+          li.nav-item
+            a.nav-link(href="/users/users_list") Order List
+        
 
       form.d-flex action="/search" method="GET"
         input.form-control.me-2[type="search" placeholder="Search" aria-label="Search" name="q"]

@@ -24,13 +24,14 @@ table.table.table-bordered.table-striped
         td= order_item.price * order_item.quantity
         td= order_item.invoice_status
         / td= order_item.invoice_date
-p Discount Applied: #{@dist = (@order.total_amount * 0.1)}
+/ p Discount Applied: #{@dist = (@order.total_amount * 0.1)}
 
 table.table.table-bordered.table-striped
   tbody
     tr
       td[colspan="3"] Total Amount:
-      td= @order.total_amount - @dist
+      td= @order.total_amount
+
 
 
 

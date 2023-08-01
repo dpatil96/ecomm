@@ -9,18 +9,21 @@ h1 Your Cart
         th Price
         th Total
         th status 
+        / th total quantity 
     tbody
       - @cart_items.each do |cart_item|
         tr
           td = cart_item.product.name
           td = cart_item.quantity
           td = cart_item.product.price
-          td = cart_item.product.price * cart_item.quantity
+          td = @cart.total_amount
           td = @cart.status
+          / td = @cart.total_quantity
   .total-amount-box
     .total-amount
       strong Total Amount:
-      span = @total_amount
+      
+      / span = @cart.total_amount
 
   / Form to apply discount coupon
   = form_tag apply_discount_cart_path(@cart), method: :post do
@@ -45,71 +48,3 @@ h1 Your Cart
 - else
   p Your cart is empty.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/ h1 Your Cart
-
-/ - if @cart_items.present?
-/   table.table.table-bordered.table-striped
-/     thead
-/       tr
-/         th Name
-/         th Quantity
-/         th Price
-/         th Total
-/     tbody
-/       - @cart_items.each do |cart_item|
-/         tr
-/           td = cart_item.product.name
-/           td = cart_item.quantity
-/           td = cart_item.product.price
-/           td = cart_item.product.price * cart_item.quantity
-
-/   .total-amount-box
-/     .total-amount
-/       strong Total Amount:
-/       span = @total_amount
- 
-
-/   / # Form to apply discount coupon
-  
-/ = form_with model: Discount.new, url: cart_discounts_path, method: :post do |form|
-/   label for: :cart_discount_discount_id, class: 'form-label' do
-/     | Select a Discount Coupon:
-/   select name: 'cart_discount[discount_id]', id: 'cart_discount_discount_id', class: 'form-select'
-/     option value=""
-/       | An empty option for no discount selected
-/     - @discount_coupons.each do |coupon|
-/     option value=coupon.id
-/         = coupon.name
-/   button type="submit" class="btn btn-primary" Apply Coupon
-
-
-
-
-/   = form_with(url: pay_bill_cart_path(@cart), method: :post) do |form|
-/     = form.submit 'Pay Bill', class: 'btn btn-primary'
-
-/ - else
-/   p Your cart is empty.

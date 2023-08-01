@@ -10,6 +10,7 @@ table.table.table-bordered.table-striped
       th Name
       th Code
       th Discount Percentage
+      th Discount Limit 
       th Action
   tbody
     - @discounts.each do |discount|
@@ -17,7 +18,8 @@ table.table.table-bordered.table-striped
         td = discount.name
         td = discount.code
         td = discount.discount_percentage
-        td
+        td = discount.discount_limit
+        td 
           - if policy(discount).update?
             = link_to 'Edit', edit_discount_path(discount), class: 'btn btn-primary'
           - if policy(discount).destroy?

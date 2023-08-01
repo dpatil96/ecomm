@@ -1,6 +1,6 @@
 class ManagerPolicy < ApplicationPolicy
 
     def users_list?
-        user.manager?
+        user.role == 'manager'
     end
 end
