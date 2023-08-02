@@ -4,28 +4,28 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light
   .container-fluid
     a.navbar-brand[href="#"]
-      | Products
+      | PRODUCTS 
     button.navbar-toggler[type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
         li.nav-item
           a.nav-link.active[aria-current="page" href="/products"]
-            | Home
+            | HOME
         li.nav-item
           a.nav-link[href="/profiles/edit"]
-            | Profile
+            | PROFILE
         li.nav-item
           a.nav-link[href="/cart"]
-            | Cart
+            | CART 
         - if current_user_role == "manager"
           li.nav-item
-            a.nav-link(href="/users/users_list") Order List
+            a.nav-link(href="/users/users_list") ORDER LIST 
         
 
       form.d-flex action="/search" method="GET"
         input.form-control.me-2[type="search" placeholder="Search" aria-label="Search" name="q"]
-        button.btn.btn-outline-success[type="submit"] Search
+        button.btn.btn-outline-success[type="submit"] SEARCH 
 
       / form.d-flex
       /   input.form-control.me-2[type="search" placeholder="Search" aria-label="Search"]

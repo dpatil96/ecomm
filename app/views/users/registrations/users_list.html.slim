@@ -11,6 +11,7 @@ table.table.table-striped.table-bordered
       th Price
       th Status      
       th User Role
+      th order date 
   tbody
       - if @cart_items.present?
         - @cart_items.each do |cart_item|
@@ -21,6 +22,7 @@ table.table.table-striped.table-bordered
             td= cart_item.price
             td= cart_item.cart.status
             td= cart_item.cart.user.role.capitalize
+            td=
       - @order_items.each do |order_item|
         tr
           td= order_item.order.user.profile.name
@@ -29,6 +31,7 @@ table.table.table-striped.table-bordered
           td= order_item.price
           td= order_item.invoice_status
           td= order_item.order.user.role.capitalize
+          td= order_item.invoice_date
 
 
 

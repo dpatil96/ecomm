@@ -22,7 +22,7 @@ module Users
 
 
       @users = User.includes(:order_items)
-      @order_items = OrderItem.all
+      @order_items = OrderItem.order(created_at: :desc)
       @cart_items = CartItem.all
     end
 

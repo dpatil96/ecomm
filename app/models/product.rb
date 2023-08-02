@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
-  paginates_per 2
+  paginates_per 4
   has_one_attached :main_image
   has_many :reviews
 
