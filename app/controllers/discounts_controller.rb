@@ -1,11 +1,12 @@
 # app/controllers/discounts_controller.rb
 class DiscountsController < ApplicationController
-    before_action :authenticate_user! # Use your authentication method
+    # before_action :authenticate_user! # Use your authentication method
     before_action :set_discount, only: [:update, :destroy]
     # after_action :verify_authorized, except: [:index]
   
     def index
       @discounts = Discount.all
+      
      
     end
 
@@ -16,6 +17,7 @@ class DiscountsController < ApplicationController
 
     def show
         @discount = Discount.find(params[:id])
+        user = current_user
     end
 
     def edit

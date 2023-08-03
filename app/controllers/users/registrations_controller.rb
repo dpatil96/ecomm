@@ -4,17 +4,22 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     before_action :sign_up_params, only: [:create]
     before_action :account_update_params, only: [:update]
-
+    # before_action :get_user
+    include Discount
     def new
       puts "\n\n...I'm in your local...\n\n"
       build_resource({})
       resource.build_profile
       respond_with resource
     end
-    def get_user
-      return user = current_user
-      
-    end
+
+    # def get_user
+     
+    #   user = current_user
+    #   cart = user.cart
+    #   discount = Discount::Discount.new
+    #   discount.apply_discount(cart)                   
+    # end
 
     def users_list
 

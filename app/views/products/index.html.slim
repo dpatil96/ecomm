@@ -10,90 +10,19 @@
           p.card-text.text-truncate.text-center.mt-2.mb-1 Size: #{product.size}
           p.card-text.text-muted.text-center.mb-3 Price: #{product.price}
           .d-grid.gap-2
-            = link_to 'SHOW', product, class: "btn btn-dark"
+            / = link_to 'SHOW', product, class: "btn btn-dark"
             - if policy(product).edit?
-              = link_to 'EDIT', edit_product_path(product), class: "btn btn-info"
+              = link_to 'EDIT', edit_product_path(product), class: "btn btn-dark"
             / - if policy(product).destroy?
             /   = link_to "DESTROY", product_path(product), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"
-            = link_to 'ADD TO CART', product_cart_items_path(product), class: "btn btn-info"
+          .d-grid.gap-2
+            = form_with(url: product_cart_items_path(product)) do |form|
+                .form-group
+                  / = form.label :quantity
+                  = form.hidden_field :quantity, min: 1, value: 1, class: "form-control"
+                = form.submit 'ADD  TO  CART ', class: "btn btn-info btn-lg"
 p 
 - if policy(Product).new?
   = link_to 'New Product', new_product_path, class: "btn btn-primary", style: "width: 200px;"
 p
   = paginate @products
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/ .row
-/   - @products.each do |product|
-/     .col-md-3.mb-4
-/       .card.shadow
-/         .card-body
-/           - if product.main_image.attached?
-/             = link_to product_path(product) do
-/               = image_tag product.main_image.variant(resize: "150x150"), class: "img-thumbnail"
-/           h5.card-title = product.name
-/           p.card-text Size: #{product.size}
-/           p.card-text Price: $#{product.price}
-/           = link_to 'Show', product, class: "btn btn-dark"
-/           - if policy(product).edit?
-/             = link_to 'Edit', edit_product_path(product), class: "btn btn-info"
-/           - if policy(product).destroy?
-/             = link_to "Destroy", product_path(product), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"
-       
-/ p 
-/ - if policy(Product).new?
-/   / = link_to "New Product", new_product_path, style: "width: 200px; background-color: orange; color: white; text-align: center;"
-/   = link_to 'New Product', new_product_path, class: "btn btn-primary",style: "width: 200px";
-/   / Example link in your application layout or view
-  
-/ p 
-/   = paginate @products
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/ p[style="color: green"]
-/   = notice
-/ .col-lg-8.mx-auto
-/   h1 PRODUCTS 
-/ table
-/   thead
-/     tr
-/       th Name
-/       th Size
-/       th Price 
-/       th image 
-/       th colspan="2"
-/   tbody

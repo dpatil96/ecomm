@@ -13,15 +13,15 @@ module Discount
             else 
                 @max_discount =  @cart_total_amount > @discount_on_amount.discount_threshold ?  @discount_on_amount : @discount_on_quantity
                 return @max_discount
-            end
-
-            
-        
+            end         
         end
 
-        def apply_discount
+        def apply_discount()
             set_amount_and_quantity
+            
+            #  @user = current_user
             @cart = Cart.all
+            # @cart = Cart.where("user_id LIKE ?" ,"#{current_user.id}")
 
             @cart.map { |cart| 
                 @cart_total_amount = cart.total_amount
@@ -33,12 +33,9 @@ module Discount
                 @max_discount = check_max_discount
                 final = @cart_total_amount - @max_discount.discount_limit
                 return final
-
             else
-                return @cart_total_amount
+               return @cart_total_amount
             end                   
-                
-          
         end
 
         def set_amount_and_quantity
