@@ -13,13 +13,13 @@ module Users
       respond_with resource
     end
 
-    # def get_user
+    def get_user
      
-    #   user = current_user
-    #   cart = user.cart
-    #   discount = Discount::Discount.new
-    #   discount.apply_discount(cart)                   
-    # end
+      user = current_user
+      # cart = user.cart
+      discount = Discount::Discount.new
+      discount.apply_discount(user)                   
+    end
 
     def users_list
 

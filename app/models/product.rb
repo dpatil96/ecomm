@@ -15,5 +15,8 @@ class Product < ApplicationRecord
 
   validates :name, uniqueness: { case_sensitive: false }
 
+  attribute :default_rating, :decimal, default: 4.0
+
+
   ratyrate_rateable 'quality'
 end

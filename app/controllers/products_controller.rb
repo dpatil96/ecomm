@@ -50,6 +50,7 @@ class ProductsController < ApplicationController
     @results = Product.where('name LIKE ?', "%#{@query}%")
   end
 
+
   private
 
   def set_product
