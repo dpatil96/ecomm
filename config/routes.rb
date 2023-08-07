@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   get 'profiles/edit'
   root to: 'products#index'
+  get 'logout', to: 'sessions#logout', as: :logout 
   # config/routes.rb
   resource :profile, only: %i[edit update]
 
