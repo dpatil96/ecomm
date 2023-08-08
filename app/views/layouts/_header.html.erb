@@ -1,24 +1,23 @@
-<header>
-    <ul>
-        
+<header class="header-menu">
+  <div style="text-align: right; padding: 10px;">
+    <ul style="list-style: none; margin: 0; padding: 0;">
+      <li style="display: inline-block; margin-right: 10px;">
+        <!-- Edit Registration or Login button based on user status -->
         <% if user_signed_in? %>
-        <ul>
-        <%= link_to 'Edit Registration', edit_user_registration_path , class:"btn btn-warning"%>
-        </ul>
-         <ul>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"btn btn-danger" %>
-        </ul>
-
+          <%= link_to 'Edit Registration', edit_user_registration_path, class: "btn btn-warning" %>
         <% else %>
-
-         <ul>
-        <%= link_to 'Login', new_user_session_path,class: "btn btn-outline-primary btn-lg"%>
-        </ul>
-         <ul>
-        <%= link_to 'Register',new_user_registration_path,class: "btn btn-outline-primary btn-lg"%>
-        </ul>
-
-        <%end%>
-
+          <%= link_to 'Login', new_user_session_path, class: "btn btn-outline-primary btn-lg" %>
+        <% end %>
+      </li>
+      <li style="display: inline-block;">
+        <!-- Logout or Register button based on user status -->
+        <% if user_signed_in? %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to 'Register', new_user_registration_path, class: "btn btn-outline-primary btn-lg" %>
+        <% end %>
+      </li>
     </ul>
+  </div>
+
 </header>
