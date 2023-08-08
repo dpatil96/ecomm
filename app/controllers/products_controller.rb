@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
 
   def search
     @query = params[:q]
-    @results = Product.where('name LIKE ?', "%#{@query}%")
+    @results = Product.where('name or size Like  ?', "%#{@query}%")
   end
 
   private

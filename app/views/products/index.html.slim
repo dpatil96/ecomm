@@ -1,3 +1,11 @@
+svg.bi.bi-bag-heart-fill[xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" viewbox="0 0 16 16"]
+  path[d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"]
+h1 [ style="font-family: Times New Roman, Times, serif; text-align:center;" ]
+ b
+  | PRODUCTS 
+div(style="margin-top: 40px;")
+
+
 .row
   - @products.each do |product|
     .col-md-3.mb-4
@@ -10,15 +18,21 @@
           p.card-text.text-truncate.text-center.mt-2.mb-1 Size: #{product.size}
           p.card-text.text-muted.text-center.mb-3 Price: #{product.price}
           .d-grid.gap-2
-            = link_to 'SHOW', product, class: "btn btn-dark"
-            - if policy(product).edit?
-              = link_to 'EDIT', edit_product_path(product), class: "btn btn-info"
+            / = link_to 'SHOW', product, class: "btn btn-dark"
+            / - if policy(product).edit?
+            = link_to 'EDIT', edit_product_path(product), class: "btn btn-dark"
             / - if policy(product).destroy?
             /   = link_to "DESTROY", product_path(product), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"
-            = link_to 'ADD TO CART', product_cart_items_path(product), class: "btn btn-info"
+          .d-flex.align-items-center.justify-content-between
+            = form_with(url: product_cart_items_path(product), local: true) do |form|
+              .form-group.mb-0.d-flex.align-items-center
+                = form.number_field :quantity, min: 1, value: 1, class: "form-control mr-2"
+                = form.submit 'ADD TO CART', class: "btn btn-info"
 p 
 - if policy(Product).new?
   = link_to 'New Product', new_product_path, class: "btn btn-primary", style: "width: 200px;"
+/ p
+/   = link_to "Logout", logout_path,class: "btn btn-danger"
 p
   = paginate @products
 
@@ -65,35 +79,3 @@ p
 / p 
 /   = paginate @products
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/ p[style="color: green"]
-/   = notice
-/ .col-lg-8.mx-auto
-/   h1 PRODUCTS 
-/ table
-/   thead
-/     tr
-/       th Name
-/       th Size
-/       th Price 
-/       th image 
-/       th colspan="2"
-/   tbody
