@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :pay_bill, :invoice]
+  before_action :set_cart, only: [:show, :pay_bill, :invoice, :download_pdf]
 
   def show
     @cart_items = current_user.cart.cart_items.includes(:product)
@@ -66,6 +66,60 @@ class CartsController < ApplicationController
     # @total_amount = @order.total_amount # Use the total_amount from the order, which already considers the discount
   end
 
+  def download_pdf
+    pdf = Prawn::Document.new
+    # pdf.text 'Hello World'
+    # send_data(pdf.render,filename:'hello.pdf',type: 'application/pdf')
+    
+    @user = current_user
+    @order_items = @user.order.order_items.includes(:product)
+
+    pdf.text 'INVOICE ', size: 26, align: :center
+
+    pdf.move_down 20
+
+    customer_info = [
+
+      ['Customer name:', @user.profile.name],
+
+      # ['Order date:', @order_items.invoice_date],
+
+      
+
+      ['Address:', @user.profile.address]
+
+    ]
+
+    product_details = []
+
+    @order_items.each do |order_item|
+
+      product_details << [
+
+        ['Product name:', order_item.product.name],
+
+        ['Product price:', order_item.price],
+
+        ['Product quantity:', order_item.quantity]
+
+      ]
+
+    end
+
+
+    pdf.move_down 20
+
+    pdf.move_down 10
+
+  pdf_data = pdf.render
+  send_data pdf_data, filename: 'invoice.pdf', type: 'application/pdf', disposition: 'inline'
+
+    
+
+
+  end
+
+  
 
   private
 

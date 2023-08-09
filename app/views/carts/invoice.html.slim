@@ -1,4 +1,4 @@
-h1 Invoice
+h1 INVOICE
 
 - if @user.profile.present?
   p Customer Name: #{@user.profile.name}
@@ -10,11 +10,11 @@ h1 Invoice
 table.table.table-bordered.table-striped
   thead
     tr
-      th Product Name
-      th Quantity
-      th Price
-      th Total
-      th status 
+      th PRODUCT NAME
+      th QUANTITY
+      th PRICE
+      th TOTAL
+      th STATUS  
   tbody
     - @order_items.each do |order_item|
       tr
@@ -28,50 +28,12 @@ table.table.table-bordered.table-striped
 
 table.table.table-bordered.table-striped
   tbody
+    tr 
+      td Discount Applied: 
+      td= @cart.total_amount - @order.total_amount
     tr
       td[colspan="3"] Total Amount:
       td= @order.total_amount
 
+= link_to "Download pdf", download_path, class: "btn btn-danger"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/ h1 Invoice
-
-/ - if @user.profile.present?
-/   p Customer Name: #{@user.profile.name}
-/ - else
-/   p Customer Name: N/A
-
-/ table.table.table-bordered.table-striped
-/   thead
-/     tr
-/       th Product Name
-/       th Quantity
-/       th Price
-/       th Total
-/   tbody
-/     - @order_items.each do |order_item|
-/       tr
-/         td = order_item.product.name
-/         td = order_item.quantity
-/         td = order_item.price
-/         td = order_item.price * order_item.quantity
-
-/ p Discount Applied: #{@dist=(@order.total_amount*0.1)}
-
-/ p Total Amount: #{@order.total_amount - @dist }
