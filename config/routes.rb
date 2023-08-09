@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#logout', as: :logout 
   # config/routes.rb
   resource :profile, only: %i[edit update]
+  post '/sessions/user', to: 'sessions#create'
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
-
+  # devise_for :users, skip: [:sessions]
   devise_scope :user do
     get '/users/users_list', to: 'users/registrations#users_list', as: :users_list
   end
@@ -42,13 +43,9 @@ Rails.application.routes.draw do
 
   resources :discounts
 
-
-  # get 'users/users_list', to: 'users#users_list', as: :users_list
-  # resources :users do
-  #   collection do
-  #     get 'users_list' # Create a custom route to access the users_list? action
-  #   end
-  # end
   
+  # resources :sessions, only: [:new, :create, :destroy]
+
+  get 'download', to:"carts#download_pdf"
 
 end

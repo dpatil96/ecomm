@@ -16,13 +16,13 @@ module Users
       
     # end
 
-    def create
-      super do |resource|
-        # Custom logic after successful registration
-        # For example, you can store the user ID in the session
-        session[:user_id] = resource.id
-      end
-    end
+    # def create
+    #   super do |resource|
+    #     # Custom logic after successful registration
+    #     # For example, you can store the user ID in the session
+    #     session[:user_id] = resource.id
+    #   end
+    # end
 
     def users_list
 
