@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   get 'profiles/edit'
   root to: 'products#index'
-  get 'logout', to: 'sessions#logout', as: :logout 
+  get 'logout', to: 'sessions#logout', as: :logout
   # config/routes.rb
   resource :profile, only: %i[edit update]
   post '/sessions/user', to: 'sessions#create'
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/users_list', to: 'users/registrations#users_list', as: :users_list
   end
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :products do
     resources :reviews
@@ -43,9 +43,7 @@ Rails.application.routes.draw do
 
   resources :discounts
 
-  
   # resources :sessions, only: [:new, :create, :destroy]
 
-  get 'download', to:"carts#download_pdf"
-
+  get 'download', to: 'carts#download_pdf'
 end

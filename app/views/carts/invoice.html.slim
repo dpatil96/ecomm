@@ -29,11 +29,11 @@ table.table.table-bordered.table-striped
 table.table.table-bordered.table-striped
   tbody
     tr 
-      td Discount Applied: 
+      td[colspan="3"] Discount Applied: 
       td= @cart.total_amount - @order.total_amount
     tr
       td[colspan="3"] Total Amount:
       td= @order.total_amount
 
-= link_to "Download pdf", download_path, class: "btn btn-danger"
+= link_to "Download pdf", download_path(order_id: @order.id), class: "btn btn-danger"
 

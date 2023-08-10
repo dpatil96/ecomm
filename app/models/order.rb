@@ -1,8 +1,10 @@
-class Order < ApplicationRecord
-    belongs_to  :user
-    has_many :order_items 
+# frozen_string_literal: true
 
-    def total_price
-        total_amount.to_i
-    end
+class Order < ApplicationRecord
+  belongs_to :user
+  has_many :order_items
+
+  def total_price
+    total_amount.to_i
+  end
 end

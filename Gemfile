@@ -73,5 +73,4 @@ gem 'rubocop', '~> 1.54', require: false
 
 gem 'image_processing', '~> 1.2'
 
-
-gem "prawn", "~> 2.4"
+gem 'prawn', '~> 2.4'

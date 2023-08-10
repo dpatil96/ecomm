@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveDiscountIdFromCartItems < ActiveRecord::Migration[6.1]
   def change
     remove_reference :cart_items, :discount, foreign_key: true

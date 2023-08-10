@@ -1,6 +1,7 @@
-class ManagerPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
-    def users_list?
-        user.role == 'manager'
-    end
+class ManagerPolicy < ApplicationPolicy
+  def users_list?
+    user.role == 'manager'
+  end
 end

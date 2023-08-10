@@ -11,23 +11,9 @@ module Users
       resource.build_profile
       respond_with resource
     end
-    # def get_user
-    #   return user = current_user
-      
-    # end
-
-    # def create
-    #   super do |resource|
-    #     # Custom logic after successful registration
-    #     # For example, you can store the user ID in the session
-    #     session[:user_id] = resource.id
-    #   end
-    # end
 
     def users_list
-
       authorize :manager, :users_list?
-
 
       @users = User.includes(:order_items)
       @order_items = OrderItem.order(created_at: :desc)
