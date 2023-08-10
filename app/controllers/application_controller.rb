@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   before_action :set_cart
   include Pundit
 
-
   helper_method :current_user_role
 
   def current_user_role
@@ -24,6 +23,5 @@ class ApplicationController < ActionController::Base
 
     @cart = Cart.create
     session[:cart_id] = @cart.id
-
   end
 end

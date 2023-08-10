@@ -79,5 +79,4 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.active_storage.variant_processor = :mini_magick
-
 end

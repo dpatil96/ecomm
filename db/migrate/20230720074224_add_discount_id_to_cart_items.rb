@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDiscountIdToCartItems < ActiveRecord::Migration[6.1]
   def change
     add_reference :cart_items, :discount, foreign_key: true
