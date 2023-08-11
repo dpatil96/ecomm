@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    if @profile.update(profile_params)
+    if @profile.update(profile_params)      
       redirect_to root_path, notice: 'Profile was successfully updated.'
     else
       render :edit
@@ -20,6 +20,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:name, :address, :gender, :birth_date)
+    params.require(:profile).permit(:name, :address, :gender, :birth_date, :age)
   end
 end
