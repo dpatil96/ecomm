@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
-class SessionsController < ApplicationController
-  def new; end
+class CustomSessionsController < Devise::SessionsController
+  
+  def create
+    super do |user|
+      session[:user_id] = user.id
+  end
+ 
+  
 
   def logout
     User.find_by(email: params[:email])

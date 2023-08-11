@@ -15,8 +15,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
-  # enum role: [:user, :admin, :manager]
-  # enum role: { user: 0, admin: 1, manager: 2 }
+
 
   def admin?
     role == 'admin'
@@ -24,7 +23,6 @@ class User < ApplicationRecord
 
   def users_list?
     authorize :manager, :users_list?
-    # @users = User.includes(:order_items)
   end
 
   private

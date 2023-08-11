@@ -22,6 +22,11 @@ h2 Edit Profile
     | #{@profile.user.role}
   br
   .form-group
+    = form.label :age, class: 'form-label'
+    = form.text_field :age, value: @profile.age, readonly: true, class: 'form-control'
+
+  br
+  .form-group
     = form.submit "Update Profile", class: 'btn btn-primary'
 
   

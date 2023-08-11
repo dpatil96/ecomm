@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_10_092326) do
+ActiveRecord::Schema.define(version: 2023_08_11_095838) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 2023_08_10_092326) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rating"
+    t.boolean "age_restricted"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 2023_08_10_092326) do
     t.string "address"
     t.string "gender"
     t.date "birth_date"
+    t.integer "age"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

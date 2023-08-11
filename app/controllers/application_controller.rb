@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
   before_action :initialize_cart
   before_action :set_cart
   include Pundit
+  before_action :set_current_user
+
+  private
+
+  def set_current_user
+    if session[:user_id]
+      @current_user = User.find(session[:user_id])
+    end
+  end
 
   helper_method :current_user_role
 

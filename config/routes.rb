@@ -4,12 +4,17 @@ Rails.application.routes.draw do
   get 'profiles/edit'
   root to: 'products#index'
   get 'logout', to: 'sessions#logout', as: :logout
-  # config/routes.rb
-  resource :profile, only: %i[edit update]
-  post '/sessions/user', to: 'sessions#create'
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }
-  # devise_for :users, skip: [:sessions]
+  resource :profile, only: %i[edit update]
+  
+  # Use your custom sessions controller for create and destroy actions
+  resource :custom_sessions, only: [:create, :destroy]
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'devise/sessions' # Use your custom session controller
+  }
+
   devise_scope :user do
     get '/users/users_list', to: 'users/registrations#users_list', as: :users_list
   end
@@ -42,8 +47,6 @@ Rails.application.routes.draw do
   end
 
   resources :discounts
-
-  # resources :sessions, only: [:new, :create, :destroy]
 
   get 'download', to: 'carts#download_pdf'
 end
