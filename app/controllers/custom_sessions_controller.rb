@@ -5,6 +5,7 @@ class CustomSessionsController < Devise::SessionsController
   def create
     super do |user|
       session[:user_id] = user.id
+    end
   end
  
   
