@@ -5,15 +5,14 @@ class CartItem < ApplicationRecord
   belongs_to :product
   validates :price, presence: true
   belongs_to :discount, optional: true
-  validate :check_age_restriction
+  # validate :check_age_restriction
 
+  # def check_age_restriction
+  #   if product.age_restricted? && user&.profile&.age.to_i  < 18
+  #     errors.add(:base, "This Product is age restricted.")
+  #   end
+  # end
 
-  def check_age_restriction
-    if product.age_restricted? && user&.profile&.age.to_i  < 18
-      errors.add(:base, "This Product is age restricted.")
-    end
-  end
-  
   # def check_age_restricion
   #   if product.age_restricted?
   #     user = user.profile.age
@@ -22,5 +21,4 @@ class CartItem < ApplicationRecord
   #     end
   #   end
   # end
-
- end
+end

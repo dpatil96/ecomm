@@ -21,7 +21,8 @@ class CartsController < ApplicationController
     final_amount = discount_instance.apply_discount
     total_discount = @cart.total_amount - final_amount
     # Create an order and associate it with the user's cart
-    @order = Order.create(user: current_user, total_amount: final_amount, order_date: Date.current, order_status: "Paid", discount_applied: total_discount)
+    @order = Order.create(user: current_user, total_amount: final_amount, order_date: Date.current,
+                          order_status: 'Paid', discount_applied: total_discount)
 
     # Associate the cart items with the order
     @order.order_items = @cart_items.map do |cart_item|

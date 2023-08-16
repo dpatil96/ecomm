@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#logout', as: :logout
 
   resource :profile, only: %i[edit update]
-  
+
   # Use your custom sessions controller for create and destroy actions
-  resource :custom_sessions, only: [:create, :destroy]
+  resource :custom_sessions, only: %i[create destroy]
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
